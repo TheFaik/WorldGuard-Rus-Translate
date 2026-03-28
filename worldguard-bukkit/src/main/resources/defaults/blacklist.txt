@@ -1,62 +1,62 @@
 #
-# WorldGuard blacklist
+# Черный список WorldGuard (Blacklist)
 #
-# The blacklist lets you block actions, blocks, and items from being used.
-# You choose a set of "items to affect" and a list of "actions to perform."
+# Черный список позволяет блокировать использование предметов, блоков и выполнение действий.
+# Вы выбираете набор «предметов для воздействия» и список «выполняемых действий».
 #
 ###############################################################################
 #
-# Example to block some ore mining and placement:
+# Пример блокировки добычи и установки некоторых руд:
 # [coal_ore,gold_ore,iron_ore]
 # on-break=deny,log,kick
 # on-place=deny,tell
 #
-# Events that you can detect:
-# - on-break (when a block of this type is about to be broken)
-# - on-destroy-with (the item/block held by the user while destroying)
-# - on-place (a block is being placed)
-# - on-use (an item like flint and steel or a bucket is being used)
-# - on-interact (when a block in used (doors, chests, etc.))
-# - on-drop (an item is being dropped from the player's inventory)
-# - on-acquire (an item enters a player's inventory via some method)
-# - on-equip (an item is equipped to the player's armor slots)
-#      NOTE: on-equip is overprotective due to deficiencies in Bukkit API
-# - on-dispense (a dispenser is about to dispense an item)
+# События, которые можно отследить:
+# - on-break (когда блок этого типа пытаются сломать)
+# - on-destroy-with (предмет/блок в руках игрока в момент разрушения чего-либо)
+# - on-place (когда блок устанавливается)
+# - on-use (использование предмета, например, огнива или ведра)
+# - on-interact (взаимодействие с блоком: двери, сундуки и т. д.)
+# - on-drop (предмет выбрасывается из инвентаря игрока)
+# - on-acquire (предмет попадает в инвентарь игрока любым способом)
+# - on-equip (предмет надевается в слоты брони)
+#      ПРИМЕЧАНИЕ: on-equip работает слишком строго из-за ограничений Bukkit API
+# - on-dispense (раздатчик собирается выбросить/использовать предмет)
 #
-# Actions (for events):
-# - deny (deny completely, used blacklist mode)
-# - allow (used in whitelist mode)
-# - notify (notify admins with the 'worldguard.notify' permission)
-# - log (log to console/file/database)
-# - tell (tell a player that that's not allowed)
-# - kick (kick player)
-# - ban (ban player)
+# Действия (для событий):
+# - deny (полный запрет, используется в режиме черного списка)
+# - allow (разрешить, используется в режиме белого списка)
+# - notify (уведомить админов с правом 'worldguard.notify')
+# - log (записать в консоль/файл/базу данных)
+# - tell (сообщить игроку, что это действие запрещено)
+# - kick (кикнуть игрока)
+# - ban (забанить игрока)
 #
-# Options:
-# - ignore-groups (comma-separated list of groups to not affect)
-# - ignore-perms (comma-separated list of permissions to not affect - make up
-#   your very own permissions!)
-# - comment (message for yourself that is printed with 'log' and 'notify')
-# - message (optional message to show the user instead; %s is the item name)
+# Опции:
+# - ignore-groups (список групп через запятую, на которых не влияет запрет)
+# - ignore-perms (список прав через запятую, на которых не влияет запрет —
+#     вы можете придумать свои собственные права!)
+# - comment (ваша заметка, которая выводится при действиях 'log' и 'notify')
+# - message (необязательное сообщение для игрока; %s заменяется на название предмета)
 #
 ###############################################################################
 #
-# For more information, see:
+# Для получения дополнительной информации посетите:
 # https://worldguard.enginehub.org/en/latest/blacklist/
 #
 ###############################################################################
 #
-# Some examples follow.
-# REMEMBER: If a line has # in front, it will be ignored.
+# Ниже приведены примеры.
+# ПОМНИТЕ: если строка начинается с #, она игнорируется.
 #
 
-# Deny lava buckets
+# Запретить ведра с лавой
 #[lava_bucket]
 #ignore-perms=my.own.madeup.permission
 #ignore-groups=admins,mods
 #on-use=deny,tell
 
-# Deny some ore
+# Запретить некоторые руды
 #[coal_ore,gold_ore,iron_ore]
 #ignore-groups=admins,mods
 #on-break=notify,deny,log

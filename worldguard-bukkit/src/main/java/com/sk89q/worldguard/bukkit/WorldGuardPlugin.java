@@ -409,15 +409,15 @@ public class WorldGuardPlugin extends JavaPlugin {
     public WorldEditPlugin getWorldEdit() throws CommandException {
         Plugin worldEdit = getServer().getPluginManager().getPlugin("WorldEdit");
         if (worldEdit == null) {
-            throw new CommandException("WorldEdit does not appear to be installed.");
+            throw new CommandException("Похоже, WorldEdit не установлен.");
         } else if (!worldEdit.isEnabled()) {
-            throw new CommandException("WorldEdit does not appear to be enabled.");
+            throw new CommandException("Похоже, WorldEdit не включен.");
         }
 
         if (worldEdit instanceof WorldEditPlugin) {
             return (WorldEditPlugin) worldEdit;
         } else {
-            throw new CommandException("WorldEdit detection failed (report error).");
+            throw new CommandException("Обнаружение WorldEdit не удалось (сообщите об ошибке).");
         }
     }
 
@@ -462,7 +462,7 @@ public class WorldGuardPlugin extends JavaPlugin {
         } else if (sender instanceof BukkitCommandSender) {
             return Bukkit.getConsoleSender(); // TODO Fix
         } else {
-            throw new IllegalArgumentException("Unknown actor type. Please report");
+            throw new IllegalArgumentException("Неизвестный тип актора. Пожалуйста, сообщите об этом.");
         }
     }
 
@@ -539,7 +539,7 @@ public class WorldGuardPlugin extends JavaPlugin {
             }
             getLogger().info("Default configuration file written: " + name);
         } catch (IOException e) {
-            getLogger().log(Level.WARNING, "Failed to write default config file", e);
+            getLogger().log(Level.WARNING, "Не удалось записать файл конфигурации по умолчанию", e);
         }
     }
 
@@ -554,7 +554,7 @@ public class WorldGuardPlugin extends JavaPlugin {
             }
         } catch (Throwable t) {
             // Ignore, this likely means an outdated version.
-            LOGGER.warn("Failed to check if server is running Folia", t);
+            LOGGER.warn("Не удалось проверить, запущен ли сервер на Folia", t);
         }
 
         return false;

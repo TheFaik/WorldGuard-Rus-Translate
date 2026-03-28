@@ -48,7 +48,7 @@ public abstract class YamlConfigurationManager extends ConfigurationManager {
         try {
             config.load();
         } catch (IOException e) {
-            log.severe("Error reading configuration for global config: ");
+            log.severe("Ошибка при чтении глобальной конфигурации: ");
             e.printStackTrace();
         }
 
@@ -96,8 +96,8 @@ public abstract class YamlConfigurationManager extends ConfigurationManager {
         if (!useSqlDatabase) {
             config.removeProperty("regions.sql");
         } else {
-            log.warning("SQL support for WorldGuard region storage is deprecated for removal in a future version. Please migrate to YAML storage.");
-            log.warning("For details, see https://worldguard.enginehub.org/en/latest/regions/storage/");
+            log.warning("Поддержка SQL для хранения регионов WorldGuard устарела и будет удалена в будущих версиях. Пожалуйста, перейдите на хранение в формате YAML.");
+            log.warning("Для получения подробной информации посетите: https://worldguard.enginehub.org/en/latest/regions/storage/");
         }
 
         DataSourceConfig dataSourceConfig = new DataSourceConfig(sqlDsn, sqlUsername, sqlPassword, sqlTablePrefix);
@@ -125,7 +125,7 @@ public abstract class YamlConfigurationManager extends ConfigurationManager {
     public void disableUuidMigration() {
         config.setProperty("regions.uuid-migration.perform-on-next-start", false);
         if (!config.save()) {
-            log.severe("Error saving configuration!");
+            log.severe("Ошибка при сохранении конфигурации!");
         }
     }
 }

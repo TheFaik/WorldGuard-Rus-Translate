@@ -119,7 +119,7 @@ public class BukkitWorldConfiguration extends YamlWorldConfiguration {
             try {
                 set.add(matcherParser.fromInput(input));
             } catch (TargetMatcherParseException e) {
-                log.warning("Failed to parse the block / item type specified as '" + input + "'");
+                log.warning("Не удалось обработать тип блока / предмета, указанный как '" + input + "'");
             }
         }
 
@@ -134,9 +134,9 @@ public class BukkitWorldConfiguration extends YamlWorldConfiguration {
         try {
             config.load();
         } catch (IOException e) {
-            log.log(Level.SEVERE, "Error reading configuration for world " + worldName + ": ", e);
+            log.log(Level.SEVERE, "Ошибка чтения конфигурации для мира " + worldName + ": ", e);
         } catch (YAMLException e) {
-            log.severe("Error parsing configuration for world " + worldName + ". ");
+            log.severe("Ошибка анализа конфигурации для мира " + worldName + ". ");
             throw e;
         }
 
@@ -147,7 +147,7 @@ public class BukkitWorldConfiguration extends YamlWorldConfiguration {
 
         buildPermissions = getBoolean("build-permission-nodes.enable", false);
         buildPermissionDenyMessage = CommandUtils.replaceColorMacros(
-                getString("build-permission-nodes.deny-message", "&eSorry, but you are not permitted to do that here."));
+                getString("build-permission-nodes.deny-message", "&eИзвините, но у вас нет прав для выполнения этого действия здесь."));
 
         strictEntitySpawn = getBoolean("event-handling.block-entity-spawns-with-untraceable-cause", false);
         allowAllInteract = getTargetMatchers("event-handling.interaction-whitelist");
@@ -182,7 +182,7 @@ public class BukkitWorldConfiguration extends YamlWorldConfiguration {
         spongeRadius = Math.max(1, getInt("simulation.sponge.radius", 3)) - 1;
         redstoneSponges = getBoolean("simulation.sponge.redstone", false);
         if (simulateSponge) {
-            log.warning("Sponge simulation is deprecated for removal in a future version. We recommend using CraftBook's sponge simulation instead.");
+            log.warning("Симуляция губок устарела и будет удалена в будущих версиях. Мы рекомендуем использовать симуляцию губок из CraftBook.");
         } else {
             needParentSave |= removeProperty("simulation");
         }
@@ -247,7 +247,7 @@ public class BukkitWorldConfiguration extends YamlWorldConfiguration {
         signChestProtection = getBoolean("chest-protection.enable", false);
         disableSignChestProtectionCheck = getBoolean("chest-protection.disable-off-check", true);
         if (signChestProtection) {
-            log.warning("Sign-based chest protection is deprecated for removal in a future version. See https://worldguard.enginehub.org/en/latest/chest-protection/ for details.");
+            log.warning("Защита сундуков с помощью табличек устарела и будет удалена в будущих версиях. Подробности см. на https://worldguard.enginehub.org/en/latest/chest-protection/");
         } else {
             needParentSave |= removeProperty("chest-protection");
         }
@@ -387,34 +387,34 @@ public class BukkitWorldConfiguration extends YamlWorldConfiguration {
                 }
             }
         } catch (FileNotFoundException e) {
-            log.log(Level.WARNING, "WorldGuard blacklist does not exist.");
+            log.log(Level.WARNING, "Черный список WorldGuard не существует.");
         } catch (IOException e) {
-            log.log(Level.WARNING, "Could not load WorldGuard blacklist: "
+            log.log(Level.WARNING, "Не удалось загрузить черный список WorldGuard: "
                     + e.getMessage());
         }
 
         // Print an overview of settings
         if (summaryOnStart) {
             log.log(Level.INFO, blockTNTExplosions
-                    ? "(" + worldName + ") TNT ignition is blocked."
-                    : "(" + worldName + ") TNT ignition is PERMITTED.");
+                    ? "(" + worldName + ") Зажигание TNT заблокировано."
+                    : "(" + worldName + ") Зажигание TNT разрешено.");
             log.log(Level.INFO, blockLighter
-                    ? "(" + worldName + ") Lighters are blocked."
-                    : "(" + worldName + ") Lighters are PERMITTED.");
+                    ? "(" + worldName + ") Зажигалки заблокированы."
+                    : "(" + worldName + ") Зажигалки разрешены.");
             log.log(Level.INFO, preventLavaFire
-                    ? "(" + worldName + ") Lava fire is blocked."
-                    : "(" + worldName + ") Lava fire is PERMITTED.");
+                    ? "(" + worldName + ") Огонь от лавы заблокирован."
+                    : "(" + worldName + ") Огонь от лавы разрешён.");
 
             if (disableFireSpread) {
-                log.log(Level.INFO, "(" + worldName + ") All fire spread is disabled.");
+                log.log(Level.INFO, "(" + worldName + ") Распространение огня полностью отключено.");
             } else {
                 if (!disableFireSpreadBlocks.isEmpty()) {
                     log.log(Level.INFO, "(" + worldName
-                            + ") Fire spread is limited to "
-                            + disableFireSpreadBlocks.size() + " block types.");
+                            + ") Распространение огня ограничено до "
+                            + disableFireSpreadBlocks.size() + " типы блоков.");
                 } else {
                     log.log(Level.INFO, "(" + worldName
-                            + ") Fire spread is UNRESTRICTED.");
+                            + ") Распространение огня НЕ ОГРАНИЧЕНО.");
                 }
             }
         }

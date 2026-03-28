@@ -49,14 +49,14 @@ public final class FlagUtil {
             try {
                 rawValues.put(entry.getKey().getName(), marshal(entry.getKey(), entry.getValue()));
             } catch (Throwable e) {
-                log.log(Level.WARNING, "Failed to marshal flag value for " + entry.getKey() + "; value is " + entry.getValue(), e);
+                log.log(Level.WARNING, "Failed to marshal flag value for " + entry.getKey() + "; значение: " + entry.getValue(), e);
             }
         }
 
         return rawValues;
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings("не выбрано")
     private static <T> Object marshal(Flag<T> flag, Object value) {
         return flag.marshal((T) value);
     }

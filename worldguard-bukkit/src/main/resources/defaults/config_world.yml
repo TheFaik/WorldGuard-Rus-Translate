@@ -1,21 +1,20 @@
 #
-# WorldGuard's configuration file.
+# Конфигурационный файл WorldGuard.
 #
-# This is the a per-world configuration file. It only affects one
-# corresponding world.
+# Это файл конфигурации для конкретного мира. Он влияет только на один
+# соответствующий мир.
 #
-# About editing this file:
-# - DO NOT USE TABS. You MUST use spaces or Bukkit will complain. If
-#   you use an editor like Notepad++ (recommended for Windows users), you
-#   must configure it to "replace tabs with spaces." In Notepad++, this can
-#   be changed in Settings > Preferences > Language Menu.
-# - Don't get rid of the indents. They are indented so some entries are
-#   in categories (like "enforce-single-session" is in the "protection"
-#   category.
-# - If you want to check the format of this file before putting it
-#   into WorldGuard, paste it into http://yaml-online-parser.appspot.com/
-#   and see if it gives "ERROR:".
-# - Lines starting with # are comments and so they are ignored.
+# О редактировании этого файла:
+# - НЕ ИСПОЛЬЗУЙТЕ ТАБУЛЯЦИЮ. Вы ДОЛЖНЫ использовать пробелы, иначе Bukkit
+#   выдаст ошибку. Если вы используете редактор вроде Notepad++ (рекомендуется
+#   для пользователей Windows), вы должны настроить его на «замену табуляции пробелами».
+#   В Notepad++ это можно изменить в: Настройки > Опции > Языки.
+# - Не удаляйте отступы. Они сделаны для того, чтобы некоторые записи находились
+#   в категориях (например, «enforce-single-session» находится в категории «protection»).
+# - Если вы хотите проверить формат этого файла перед тем, как добавить его
+#   в WorldGuard, вставьте его содержимое на http://yaml-online-parser.appspot.com/
+#   и проверьте, не выдаст ли он «ERROR:».
+# - Строки, начинающиеся с символа #, являются комментариями и игнорируются.
 #
 
-# -- This should be automatically replaced by the plugin in-game --
+# -- Это значение должно быть автоматически заменено плагином в игре --
