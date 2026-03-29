@@ -206,7 +206,7 @@ public abstract class Flag<T> {
     @Override
     public String toString() {
         return getClass().getSimpleName() + "{" +
-                "name='" + name + '\'' +
+                "имя='" + name + '\'' +
                 '}';
     }
 

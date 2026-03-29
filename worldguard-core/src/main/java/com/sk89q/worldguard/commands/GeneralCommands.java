@@ -127,7 +127,7 @@ public class GeneralCommands {
         }
     }
     
-    @Command(aliases = {"heal"}, usage = "[player]", desc = "Heal a player", flags = "s", max = 1)
+    @Command(aliases = {"heal"}, usage = "[игрок]", desc = "Исцелить игрока", flags = "s", max = 1)
     public void heal(CommandContext args, Actor sender) throws CommandException, AuthorizationException {
 
         Iterable<? extends LocalPlayer> targets = null;
@@ -167,11 +167,11 @@ public class GeneralCommands {
         // The player didn't receive any items, then we need to send the
         // user a message so s/he know that something is indeed working
         if (!included) {
-            sender.print("Players healed.");
+            sender.print("Игроки исцелены.");
         }
     }
     
-    @Command(aliases = {"slay"}, usage = "[player]", desc = "Slay a player", flags = "s", max = 1)
+    @Command(aliases = {"slay"}, usage = "[игрок]", desc = "Убить игрока", flags = "s", max = 1)
     public void slay(CommandContext args, Actor sender) throws CommandException, AuthorizationException {
         
         Iterable<? extends LocalPlayer> targets = Lists.newArrayList();
@@ -212,7 +212,7 @@ public class GeneralCommands {
         }
     }
     
-    @Command(aliases = {"locate"}, usage = "[player]", desc = "Определить местоположение игрока", max = 1)
+    @Command(aliases = {"locate"}, usage = "[игрок]", desc = "Определить местоположение игрока", max = 1)
     @CommandPermissions({"worldguard.locate"})
     public void locate(CommandContext args, Actor sender) throws CommandException {
         LocalPlayer player = worldGuard.checkPlayer(sender);

@@ -225,7 +225,7 @@ class RegionUpdater {
                 stmt.setBoolean(3, owner);
                 batch.addBatch();
             } else {
-                log.log(Level.WARNING, "Did not find an ID for the user identified as '" + name + "'");
+                log.log(Level.WARNING, "Не найден ID для пользователя, идентифицированного как '" + name + "'");
             }
         }
 
@@ -237,7 +237,7 @@ class RegionUpdater {
                 stmt.setBoolean(3, owner);
                 batch.addBatch();
             } else {
-                log.log(Level.WARNING, "Did not find an ID for the user identified by '" + uuid + "'");
+                log.log(Level.WARNING, "Не найден ID для пользователя, идентифицированного по '" + uuid + "'");
             }
         }
     }
@@ -293,7 +293,7 @@ class RegionUpdater {
                 stmt.setBoolean(3, owner);
                 batch.addBatch();
             } else {
-                log.log(Level.WARNING, "Did not find an ID for the group identified as '" + name + "'");
+                log.log(Level.WARNING, "Не найден ID для группы, идентифицированной как '" + name + "'");
             }
         }
     }

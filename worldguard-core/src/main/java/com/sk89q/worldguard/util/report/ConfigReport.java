@@ -35,32 +35,32 @@ import java.util.List;
 public class ConfigReport extends DataReport {
 
     public ConfigReport() {
-        super("WorldGuard Configuration");
+        super("WorldGuard Конфигурация");
 
         List<? extends World> worlds = WorldEdit.getInstance().getPlatformManager().queryCapability(Capability.GAME_HOOKS).getWorlds();
 
-        append("Configuration", new HierarchyObjectReport("Configuration", WorldGuard.getInstance().getPlatform().getGlobalStateManager()));
+        append("Кофигурация", new HierarchyObjectReport("Кофигурация", WorldGuard.getInstance().getPlatform().getGlobalStateManager()));
 
         for (World world : worlds) {
             WorldConfiguration config = WorldGuard.getInstance().getPlatform().getGlobalStateManager().get(world);
 
             DataReport report = new DataReport("World: " + world.getName());
-            report.append("Configuration", new HierarchyObjectReport("Configuration", config));
+            report.append("Кофигурация", new HierarchyObjectReport("Кофигурация", config));
 
             Blacklist blacklist = config.getBlacklist();
             if (blacklist != null) {
-                DataReport section = new DataReport("Blacklist");
-                section.append("Rule Count", blacklist.getItemCount());
-                section.append("Whitelist Mode?", blacklist.isWhitelist());
+                DataReport section = new DataReport("Чёрный список");
+                section.append("Количество правил", blacklist.getItemCount());
+                section.append("Режим белого списка?", blacklist.isWhitelist());
                 report.append(section.getTitle(), section);
             } else {
-                report.append("Blacklist", "<Disabled>");
+                report.append("Черный список", "<Disabled>");
             }
 
             RegionManager regions = WorldGuard.getInstance().getPlatform().getRegionContainer().get(world);
             if (regions != null) {
                 DataReport section = new DataReport("Regions");
-                section.append("Region Count", regions.size());
+                section.append("Количество регионов", regions.size());
 
                 ProtectedRegion global = regions.getRegion("__global__");
                 if (global != null) {
@@ -71,7 +71,7 @@ public class ConfigReport extends DataReport {
 
                 report.append(section.getTitle(), section);
             } else {
-                report.append("Regions", "<Disabled>");
+                report.append("Регионы", "<Disabled>");
             }
 
             append(report.getTitle(), report);

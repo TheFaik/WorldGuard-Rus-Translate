@@ -430,7 +430,7 @@ public class DefaultDomain implements Domain, ChangeTracked {
         }
 
         if (!uuids.isEmpty()) {
-            builder.append(TextComponent.of(uuids.size() + " unknown uuid" + (uuids.size() == 1 ? "" : "s"), TextColor.GRAY)
+            builder.append(TextComponent.of(uuids.size() + " неизвестный uuid" + (uuids.size() == 1 ? "" : "s"), TextColor.GRAY)
                     .hoverEvent(HoverEvent.of(HoverEvent.Action.SHOW_TEXT, TextComponent.of("Не удалось определить имя для:", TextColor.GRAY)
                         .append(TextComponent.newline())
                         .append(TextComponent.of(String.join("\n", uuids), TextColor.WHITE))

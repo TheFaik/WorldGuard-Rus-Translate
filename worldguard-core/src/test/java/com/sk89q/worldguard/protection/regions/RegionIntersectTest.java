@@ -97,7 +97,7 @@ public class RegionIntersectTest {
             e.printStackTrace();
         }
 
-        assertEquals(expected, actual, "Check for '" + region2.getId() + "' region failed.");
+        assertEquals(expected, actual, "Проверка региона '" + region2.getId() + "' не удалась.");
     }
 
     private static final BlockVector2[] polygon = {
@@ -118,8 +118,8 @@ public class RegionIntersectTest {
 
             final ProtectedPolygonalRegion polygonalRegion = new ProtectedPolygonalRegion("polygonalRegion", Arrays.asList(rotatedPolygon), -3, 3);
 
-            assertTrue(cuboidRegion.intersectsEdges(polygonalRegion), String.format("%s does not intersect (cuboid.intersectsEdges(polygonal)", Arrays.asList(rotatedPolygon)));
-            assertTrue(polygonalRegion.intersectsEdges(cuboidRegion), String.format("%s does not intersect (polygonal.intersectsEdges(cuboid)", Arrays.asList(rotatedPolygon)));
+            assertTrue(cuboidRegion.intersectsEdges(polygonalRegion), String.format("%s не пересекается (cuboid.intersectsEdges(polygonal)", Arrays.asList(rotatedPolygon)));
+            assertTrue(polygonalRegion.intersectsEdges(cuboidRegion), String.format("%s не пересекается (polygonal.intersectsEdges(cuboid)", Arrays.asList(rotatedPolygon)));
         }
     }
 }
