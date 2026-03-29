@@ -72,7 +72,7 @@ public class YamlRegionFile implements RegionDatabase {
     private static final Yaml ERROR_DUMP_YAML;
 
     private static final String FILE_HEADER = "#\r\n" +
-            "#";
+            "#\r\n" +
             "# Файл регионов WorldGuard\r\n" +
             "#\r\n" +
             "# ПРЕДУПРЕЖДЕНИЕ: ЭТОТ ФАЙЛ ГЕНЕРИРУЕТСЯ АВТОМАТИЧЕСКИ. Если вы редактируете этот файл\r\n" +

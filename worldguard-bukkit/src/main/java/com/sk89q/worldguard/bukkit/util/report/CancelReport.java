@@ -81,7 +81,7 @@ public class CancelReport implements Report {
         if (!cancels.isEmpty()) {
             StringBuilder builder = new StringBuilder();
 
-            builder.append("Was the action blocked? ").append(cancellable.isCancelled() ? "YES" : "NO").append("\n");
+            builder.append("Действие было заблокировано? ").append(cancellable.isCancelled() ? "ДА" : "НЕТ").append("\n");
 
             if (cancels.size() != 1) {
                 builder.append("Entry #1 had the last word.\n");
@@ -101,7 +101,7 @@ public class CancelReport implements Report {
                 if (detectingPlugin && cause != null) {
                     builder.append(cause.getName());
                 } else {
-                    builder.append(" (NOT KNOWN - use the stack trace below)");
+                    builder.append(" (НЕИЗВЕСТНО — используйте трассировку стека ниже)");
                     builder.append("\n");
                     builder.append(new StackTraceReport(stackTrace).toString().replaceAll("(?m)^", "\t"));
                 }
@@ -111,15 +111,15 @@ public class CancelReport implements Report {
 
             return builder.toString();
         } else {
-            return "No plugins cancelled the event. Other causes for cancellation: " +
-                    "(1) Bukkit may be using a different event for the action " +
-                    " (example: buckets have their own bucket events); or " +
-                    "(2) Minecraft's spawn protection has not been disabled.";
+            return "Ни один плагин не отменил событие. Другие причины отмены: " +
+                    "(1) Bukkit может использовать другое событие для этого действия " +
+                    " (пример: для вёдер есть свои события); или " +
+                    "(2) Защита спавна Minecraft не была отключена.";
         }
     }
 
     private static String getCancelText(boolean flag) {
-        return flag ? "BLOCKED" : "ALLOWED";
+        return flag ? "ЗАБЛОКИРОВАН" : "РАЗРЕШЁН";
     }
 
 }

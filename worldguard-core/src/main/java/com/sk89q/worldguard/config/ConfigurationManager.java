@@ -44,7 +44,7 @@ public abstract class ConfigurationManager {
     protected static final Logger log = Logger.getLogger(ConfigurationManager.class.getCanonicalName());
 
     static final String CONFIG_HEADER = "#\r\n" +
-            "#\r\n";
+            "#\r\n" +
             "# Основной конфигурационный файл WorldGuard\r\n" +
             "#\r\n" +
             "# Это глобальный файл конфигурации. Все, что здесь указано, будет\r\n" +
