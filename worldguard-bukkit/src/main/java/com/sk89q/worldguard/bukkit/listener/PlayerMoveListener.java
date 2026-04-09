@@ -42,6 +42,8 @@ import org.bukkit.event.vehicle.VehicleEnterEvent;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.util.Vector;
 
+import java.util.function.Consumer;
+
 public class PlayerMoveListener extends AbstractListener {
 
     public PlayerMoveListener(WorldGuardPlugin plugin) {
@@ -77,6 +79,7 @@ public class PlayerMoveListener extends AbstractListener {
     }
 
     @EventHandler(priority = EventPriority.HIGH)
+    @SuppressWarnings({"rawtypes", "unchecked"})
     public void onPlayerMove(PlayerMoveEvent event) {
         Location from = event.getFrom();
         Location to = event.getTo();
@@ -120,35 +123,29 @@ public class PlayerMoveListener extends AbstractListener {
                     vehicle.setVelocity(new Vector());
                     if (vehicle instanceof LivingEntity) {
                         Location vehicleTeleportLocation = override.clone();
-                        if (getPlugin().isFolia()) {
-                            PaperLib.teleportAsync(vehicle, vehicleTeleportLocation);
-                        } else {
-                            vehicle.teleport(vehicleTeleportLocation);
-                        }
+                        teleport(vehicle, vehicleTeleportLocation);
                     } else {
                         Location dismountLocation = override.clone().add(0, 1, 0);
-                        if (getPlugin().isFolia()) {
-                           PaperLib.teleportAsync(vehicle, dismountLocation);
-                        } else {
-                           vehicle.teleport(dismountLocation);
-                        }
+                        teleport(vehicle, dismountLocation);
                     }
                     current = current.getVehicle();
                 }
 
                 Location playerDismountLocation = override.clone().add(0, 1, 0);
-                if (getPlugin().isFolia()) {
-                    PaperLib.teleportAsync(player, playerDismountLocation);
-                } else {
-                    player.teleport(playerDismountLocation);
-                }
+                teleport(player, playerDismountLocation);
 
 
                 Location delayedDismountLocation = override.clone().add(0, 1, 0);
+                Runnable task = () -> teleport(player, delayedDismountLocation);
                 if (getPlugin().isFolia()) {
-                    player.getScheduler().runDelayed(getPlugin(), scheduledTask -> PaperLib.teleportAsync(player, delayedDismountLocation), null, 1);
+                    player.getScheduler().runDelayed(getPlugin(), new Consumer() {
+                        @Override
+                        public void accept(Object ignored) {
+                            task.run();
+                        }
+                    }, null, 1);
                 } else {
-                    Bukkit.getScheduler().runTaskLater(getPlugin(), () -> player.teleport(delayedDismountLocation), 1);
+                    Bukkit.getScheduler().runTaskLater(getPlugin(), task, 1);
                 }
             }
         }
@@ -171,6 +168,22 @@ public class PlayerMoveListener extends AbstractListener {
         }
 
         session.uninitialize(localPlayer);
+    }
+
+    /**
+     * Small utility method to teleport via async or sync methods depending on platform.
+     *
+     * <p>Ideally we can make this use PaperLib in the future once it's better tested.</p>
+     *
+     * @param entity The entity to teleport
+     * @param location The location to teleport to
+     */
+    private void teleport(Entity entity, Location location) {
+        if (getPlugin().isFolia()) {
+            PaperLib.teleportAsync(entity, location);
+        } else {
+            entity.teleport(location);
+        }
     }
 
     @EventHandler
